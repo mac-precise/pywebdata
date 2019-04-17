@@ -2,3 +2,5 @@
 bin/
 include/
 lib/
+google_maps_api_key
+geo_data_file
