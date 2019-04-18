@@ -1,7 +1,7 @@
 Py Web Data
 ===========
 
-Couple of scripts for parsing XML/JSON and HTML
+Couple of scripts for parsing XML/JSON based on extracted data from Geo Maps Google API
 
 Requirements
 ------------
