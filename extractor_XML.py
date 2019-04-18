@@ -1,14 +1,17 @@
 #!/usr/bin/python
-# Data Extractor & Parser for JSON google maps API
+# Data Extractor & Parser for XML google maps API
+# source code in Python 3
 
+import urllib
 import urllib.parse
 import urllib.request
 import urllib.error
 import sys, json
-#import requests
+#Warning The xml.etree.ElementTree module is not secure against maliciously constructed data. If you need to parse untrusted or unauthenticated data see XML vulnerabilities (https://docs.python.org/3/library/xml.html#xml-vulnerabilities)
+import xml.etree.ElementTree as ETree
 
-#Google maps url with JSON geocodes API
-serviceurl = 'https://maps.googleapis.com/maps/api/geocode/json?'
+#Google maps url with XML geocodes API
+serviceurl = 'https://maps.googleapis.com/maps/api/geocode/xml?'
 
 #Read file name "api_key" with google api key. (https://developers.google.com/maps/documentation/geocoding/get-api-key)
 keyFile = open('google_maps_api_key', 'r')
@@ -26,25 +29,12 @@ while True:
     uh = urllib.request.urlopen(url)
     data = uh.read()
     print ('Retrieved',len(data),'characters')
-    #js = json.loads(str(data))
     print ('Retrieved data:',data)
+    tree = ETree.fromstring(data)
 
-#Write JSON data into local file named: "geo_data_file"
-    with open("geo_data_file", "w") as write_file:
-        json.dump(data.decode("utf-8"), write_file)
-    js = {}
-
-    try: js = json.loads(str(data.decode("utf-8")))
-    except: js = None
-    if 'status' not in js or js['status'] != 'OK':
-        print ('Failure to retrieve')
-        print (data)
-        continue
-
-    print (json.dumps(js, indent=4))
-
-    latitude = js["results"][0]["geometry"]["location"]["lat"]
-    longitude = js["results"][0]["geometry"]["location"]["lng"]
+    results = tree.findall('result')
+    latitude = results[0].find('geometry').find('location').find('lat').text
+    longitude = results[0].find('geometry').find('location').find('lng').text
+    location = results[0].find('formatted_address').text
     print ('latitude',latitude,'longitude',longitude)
-    location = js['results'][0]['formatted_address']
     print (location)
