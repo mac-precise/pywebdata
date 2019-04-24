@@ -1,0 +1,10 @@
+#!/usr/bin/python
+#Configuration file to store credentials or other config parameters
+#Please fill in your data and change file name into "config.py"
+
+#MySQL DB connector credentials
+DB_HOST = "domain name or ip address"
+DB_NAME = "database name"
+DB_USERNAME = "database username"
+DB_PASSWORD = "database password"
+DB_PORT = "database port"

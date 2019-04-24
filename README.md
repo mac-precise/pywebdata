@@ -1,7 +1,8 @@
 Py Web Data
 ===========
 
-Couple of scripts for parsing XML/JSON based on extracted data from Geo Maps Google API
+Couple of scripts for parsing XML/JSON based on extracted data from Geo Maps Google API.
+Added MySQL connector script and DB data creator script as an examples to store and query collected data.
 
 Requirements
 ------------
@@ -17,3 +18,5 @@ Installation
 Download and run:
 $ python3 extractor_JSON.py
 $ python3 extractor_XML.py
+$ python3 mysql_connector.py
+$ python3 mysql_db_data_creator.py

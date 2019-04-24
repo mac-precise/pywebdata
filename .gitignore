@@ -5,3 +5,5 @@ lib/
 share/
 google_maps_api_key
 geo_data_file
+config.py
+__pycache__
